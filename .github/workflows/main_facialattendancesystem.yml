@@ -66,4 +66,4 @@ jobs:
         with:
           app-name: 'FacialAttendanceSystem'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_62ABA5F686694424A978293778C6BD91 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2AD40F6D6D724D0DBA3A2C39C0B3010C }}
