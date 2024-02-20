@@ -31,12 +31,7 @@ def student_directory_path(instance, filename):
 class Student(models.Model):
 
     BRANCH = (
-        ('CSE','CSE'),
-        ('IT','IT'),
-        ('ECE','ECE'),
-        ('CHEM','CHEM'),
-        ('MECH','MECH'),
-        ('EEE','EEE'),
+        ('AIML','AIML'),
     )
     YEAR = (
         ('1','1'),
