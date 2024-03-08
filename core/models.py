@@ -6,7 +6,7 @@ from django.db import models
 
 
 
-types = [('employee','employee'),('visitor','visitor')]
+types = [('student','student'),('visitor','visitor')]
 class Profile(models.Model):
     first_name = models.CharField(max_length=70)
     last_name = models.CharField(max_length=70)
