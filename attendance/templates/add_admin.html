@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student</title>
+    <title>Add Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js"></script>
+
     <style>
         body {
             padding-top: 56px; /* Adjust according to navbar height */
@@ -30,13 +32,30 @@
         }
 
     </style>
+
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Edit Student</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Add Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -48,11 +67,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ student.name }}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" class="form-control" id="dob" name="dob" value="{{ student.dob }}">
+                        <input type="date" class="form-control" id="dob" name="dob">
                     </div>
                 </div>
                 
@@ -60,39 +79,28 @@
 
             <!-- School Information -->
             <fieldset>
-                <legend>School Information</legend>
+                <legend>User Details</legend>
                 <div class="form-row">
                     <div class="form-group col-md-4">
+                        <label for="admin_id">Admin ID</label>
+                        <input type="text" class="form-control" id="admin_id" name="admin_id" placeholder="Enter Admin ID">
+                    </div>
+
+                    <div class="form-group col-md-4">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" value="{{ student.username }}">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" value="{{ student.password }}">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="{{ student.password }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="student_id">Student ID</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter Student ID" value="{{ student.student_id }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="program">Program</label>
-                        <input type="text" class="form-control" id="program" name="program" placeholder="Enter Program" value="{{ student.program }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="semester">Semester</label>
-                        <input type="text" class="form-control" id="semester" name="semester" placeholder="Enter Semester" value="{{ student.semester }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="section">Section</label>
-                        <input type="text" class="form-control" id="section" name="section" placeholder="Enter Section" value="{{ student.section }}">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="college_email">College Email</label>
-                        <input type="email" class="form-control" id="college_email" name="college_email" placeholder="Enter College Email" value="{{ student.college_email }}">
+                        <input type="email" class="form-control" id="college_email" name="college_email" placeholder="Enter College Email">
                     </div>
                 </div>
             </fieldset>
@@ -103,33 +111,19 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="personal_email">Personal Email</label>
-                        <input type="email" class="form-control" id="personal_email" name="personal_email" placeholder="Enter Personal Email" value="{{ student.personal_email }}">
+                        <input type="email" class="form-control" id="personal_email" name="personal_email" placeholder="Enter Personal Email">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone">Phone</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" value="{{ student.phone }}">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="{{ student.address }}">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address">
                     </div>
                 </div>
             </fieldset>
 
-            <!-- Emergency Contact -->
-            <fieldset>
-                <legend>Emergency Contact</legend>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="emergency_contact_person">Emergency Contact Person</label>
-                        <input type="text" class="form-control" id="emergency_contact_person" name="emergency_contact_person" placeholder="Enter Emergency Contact Person" value="{{ student.emergency_contact_person }}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="emergency_contact_phone">Emergency Contact Phone</label>
-                        <input type="tel" class="form-control" id="emergency_contact_phone" name="emergency_contact_phone" placeholder="Enter Emergency Contact Phone" value="{{ student.emergency_contact_phone }}">
-                    </div>
-                </div>
-            </fieldset>
 
             <!-- Upload Picture -->
             <fieldset>
@@ -143,7 +137,7 @@
 
             <!-- Add Button -->
             <div class="text-center">
-                <button type="submit" class="btn btn-primary mt-3 pl-5 pr-5">Save Changes</button>
+                <button type="submit" class="btn btn-primary mt-3 pl-5 pr-5" onclick="showAlertAndRedirect()">Add Admin</button>
             </div>
         </form>
     </div>
@@ -159,5 +153,29 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- Existing HTML code -->
+
+    <script>
+        // Function to show alert and redirect
+        function showAlertAndRedirect() {
+            alert("User Addition Successful");
+            window.location.href = "/add_admin"; // Redirect to the same page
+        }
+        
+        // Function to display file name and preview image
+        document.getElementById('image-upload').addEventListener('change', function(event) {
+            var fileInput = event.target;
+            var fileName = fileInput.files[0].name;
+            document.getElementById('file-name')
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('image-preview').setAttribute('src', e.target.result);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        });
+    </script>
+
 </body>
 </html>
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 56px; /* Adjust according to navbar height */
+            padding-bottom: 70px; /* Adjust according to footer height */
+            overflow-y: scroll; /* Add scrollbar when content exceeds viewport height */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #343a40; /* Dark color for footer */
+            color: #ffffff; /* Light text color for footer */
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* Push content down when navbar is toggled */
+        body.navbar-open {
+            padding-top: 200px; /* Adjust according to navbar height and expanded navbar height */
+        }
+    </style>
+</head>
+<body>   
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Update Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <!-- Search Bar -->
+        <form class="mt-5 mb-4">
+            <div class="form-group">
+                <input type="text" class="form-control" id="searchInput" placeholder="Search..." value="{{ query }}">
+            </div>
+        </form>
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>College Email</th>
+            
+                    <th>Action</th> <!-- New column for actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for admin in admins %}
+                <tr>
+                    <td>{{ admin.admin_id }}</td>
+
+                    <td>{{ admin.username }}</td>
+                    <td>{{ admin.name }}</td>
+                    <td>{{ admin.college_email }}</td>
+
+                    <td>
+                        <!-- Edit icon -->
+                        <a href="{% url 'edit_admin' admin.id %}" class="btn btn-primary mr-1">
+                            <i class="fas fa-edit fa-lg mr-1"></i> <!-- Larger icon -->
+                            Edit
+                        </a>
+                        <!-- Delete form -->
+                        <form method="post" action="{% url 'delete_admin' admin.id %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt fa-lg mr-1"></i> <!-- Larger icon -->
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No Admin found</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2022 Attendance System. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: '{% url "update_admin" %}',
+                    data: {query: query},
+                    success: function(response) {
+                        $('body').html(response);
+                        $('#searchInput').focus(); // Set focus on the input field
+                        var len = $('#searchInput').val().length;
+                        $('#searchInput')[0].setSelectionRange(len, len); // Set cursor position to the end
+                    }
+                });
+            });
+
+            // Push content down when navbar is toggled
+            $('.navbar-toggler').on('click', function() {
+                $('body').toggleClass('navbar-open');
+            });
+        });
+    </script>
+
+</body>
+</html>

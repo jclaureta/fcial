@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Student</title>
+    <title>Edit Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -36,7 +36,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Edit Student</a>
+            <a class="navbar-brand" href="#">Edit Admin</a>
         </div>
     </nav>
 
@@ -48,11 +48,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ student.name }}">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ admin.name }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="dob">Date of Birth</label>
-                        <input type="date" class="form-control" id="dob" name="dob" value="{{ student.dob }}">
+                        <input type="date" class="form-control" id="dob" name="dob" value="{{ admin.dob }}">
                     </div>
                 </div>
                 
@@ -60,39 +60,28 @@
 
             <!-- School Information -->
             <fieldset>
-                <legend>School Information</legend>
+                <legend>User Details</legend>
                 <div class="form-row">
                     <div class="form-group col-md-4">
+                        <label for="admin_id">Admin ID</label>
+                        <input type="text" class="form-control" id="admin_id" name="admin_id" placeholder="Enter Admin ID" value="{{ admin.admin_id }}">
+                    </div>
+                    <div class="form-group col-md-4">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" value="{{ student.username }}">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username" value="{{ admin.username }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" value="{{ student.password }}">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" value="{{ admin.password }}">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="confirm_password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="{{ student.password }}">
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="{{ admin.password }}">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="student_id">Student ID</label>
-                        <input type="text" class="form-control" id="student_id" name="student_id" placeholder="Enter Student ID" value="{{ student.student_id }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="program">Program</label>
-                        <input type="text" class="form-control" id="program" name="program" placeholder="Enter Program" value="{{ student.program }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="semester">Semester</label>
-                        <input type="text" class="form-control" id="semester" name="semester" placeholder="Enter Semester" value="{{ student.semester }}">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="section">Section</label>
-                        <input type="text" class="form-control" id="section" name="section" placeholder="Enter Section" value="{{ student.section }}">
-                    </div>
+                    
                     <div class="form-group col-md-6">
                         <label for="college_email">College Email</label>
-                        <input type="email" class="form-control" id="college_email" name="college_email" placeholder="Enter College Email" value="{{ student.college_email }}">
+                        <input type="email" class="form-control" id="college_email" name="college_email" placeholder="Enter College Email" value="{{ admin.college_email }}">
                     </div>
                 </div>
             </fieldset>
@@ -103,33 +92,19 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="personal_email">Personal Email</label>
-                        <input type="email" class="form-control" id="personal_email" name="personal_email" placeholder="Enter Personal Email" value="{{ student.personal_email }}">
+                        <input type="email" class="form-control" id="personal_email" name="personal_email" placeholder="Enter Personal Email" value="{{ admin.personal_email }}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone">Phone</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" value="{{ student.phone }}">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" value="{{ admin.phone }}">
                     </div>
                     <div class="form-group col-md-12">
                         <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="{{ student.address }}">
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" value="{{ admin.address }}">
                     </div>
                 </div>
             </fieldset>
 
-            <!-- Emergency Contact -->
-            <fieldset>
-                <legend>Emergency Contact</legend>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="emergency_contact_person">Emergency Contact Person</label>
-                        <input type="text" class="form-control" id="emergency_contact_person" name="emergency_contact_person" placeholder="Enter Emergency Contact Person" value="{{ student.emergency_contact_person }}">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="emergency_contact_phone">Emergency Contact Phone</label>
-                        <input type="tel" class="form-control" id="emergency_contact_phone" name="emergency_contact_phone" placeholder="Enter Emergency Contact Phone" value="{{ student.emergency_contact_phone }}">
-                    </div>
-                </div>
-            </fieldset>
 
             <!-- Upload Picture -->
             <fieldset>

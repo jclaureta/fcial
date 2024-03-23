@@ -26,6 +26,9 @@
 
         .picture-div {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
         }
 
     </style>
@@ -36,7 +39,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Add Students</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Add Students</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -146,20 +149,16 @@
                     </div>
                 </div>
             </fieldset>
+
+            <!-- Upload Picture -->
             <fieldset>
                 <legend>Upload Picture</legend>
                 <div class="picture-div">
-                    <button type="button" class="btn btn-secondary" id="capture-btn">
-                        Capture Images
-                    </button>
+                    <input type="file" id="image-upload" name="image" accept="image/*">
+                    <p id="file-name"></p>
+                    <img id="image-preview" style="max-width: 200px; max-height: 200px;">
                 </div>
-                <fieldset>
-                    <legend>Webcam</legend>
-                    <div id="my-camera"></div>
-                </fieldset>
             </fieldset>
-            <!-- Webcam container -->
-            
 
             <!-- Add Button -->
             <div class="text-center">
@@ -182,94 +181,24 @@
     <!-- Existing HTML code -->
 
     <script>
-        document.getElementById('capture-btn').addEventListener('click', function() {
-            // Configure webcam
-            Webcam.set({
-                width: 320, // Adjust width as needed
-                height: 240, // Adjust height as needed
-                dest_width: 640, // Adjust destination width as needed
-                dest_height: 480, // Adjust destination height as needed
-                image_format: 'jpeg',
-                jpeg_quality: 90
-            });
-
-            // Attach webcam to the video element with id 'my-camera'
-            Webcam.attach('#my-camera');
-
-            // Create 'Capture Images' button
-            var captureImagesBtn = document.createElement('button');
-            captureImagesBtn.innerHTML = 'Capture Images';
-            captureImagesBtn.classList.add('btn', 'btn-primary', 'mr-2');
-            captureImagesBtn.addEventListener('click', captureImages);
-            document.getElementById('my-camera').appendChild(captureImagesBtn);
-
-            // Create 'Close' button
-            var closeBtn = document.createElement('button');
-            closeBtn.innerHTML = 'Close';
-            closeBtn.classList.add('btn', 'btn-danger');
-            closeBtn.addEventListener('click', closeWebcam);
-            document.getElementById('my-camera').appendChild(closeBtn);
-        });
-
-        // Function to capture images
-        function captureImages() {
-            // Counter to keep track of captured images
-            var imageCount = 0;
-
-            // Recursive function to capture images until the count reaches 10
-            function capture() {
-                if (imageCount < 10) {
-                    Webcam.snap(function(data_uri) {
-                        // Display captured image somewhere or do something with data_uri
-                        console.log('Image captured:', data_uri);
-                        
-                        // Send the captured image data_uri to the server for processing
-                        // You can use AJAX to send the data_uri to the server
-                        // Here's a simple example using Fetch API
-                        fetch('/process_image/', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ image_data: data_uri }),
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Handle response from the server if needed
-                            console.log('Response from server:', data);
-                        })
-                        .catch(error => {
-                            console.error('Error:', error);
-                        });
-
-                        // Increment the image count
-                        imageCount++;
-
-                        // Continue capturing images recursively
-                        capture();
-                    });
-                } else {
-                    // If 10 images are captured, display a message or perform any other action
-                    console.log('All images captured');
-                }
-            }
-
-            // Start capturing images
-            capture();
-        }
-
-        // Function to close webcam
-        function closeWebcam() {
-            Webcam.reset(); // Stop webcam
-            var webcamContainer = document.getElementById('my-camera');
-            webcamContainer.innerHTML = ''; // Remove buttons
-        }
-
         // Function to show alert and redirect
         function showAlertAndRedirect() {
             alert("User Addition Successful");
             window.location.href = "/add_students"; // Redirect to the same page
         }
+        
+        // Function to display file name and preview image
+        document.getElementById('image-upload').addEventListener('change', function(event) {
+            var fileInput = event.target;
+            var fileName = fileInput.files[0].name;
+            document.getElementById('file-name')
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('image-preview').setAttribute('src', e.target.result);
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        });
     </script>
 
 </body>
