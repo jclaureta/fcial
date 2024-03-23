@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Homepage</title>
+    <title>Manage Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <style>
@@ -16,49 +16,33 @@
             padding: 10px 0;
             text-align: center;
         }
-
-        /* Custom styles */
-        .center-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 90vh;
-        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">Teacher Home</a>
+            <a class="navbar-brand" href="#">Manage Admin</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Attendance</a>
+                        <a class="nav-link" href="{% url 'add_admin' %}">Add</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
+                        <a class="nav-link" href="{% url 'update_admin' %}">Update</a>
                     </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li> -->
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Content -->
-    <div class="center-content">
-        <h1 class="title-label mb-4">Welcome Teacher!</h1>
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">Take Attendance</h5>
-                <p class="card-text">Take Attendance for the class</p>
-                <a href="#" class="btn btn-primary">Take Attendance</a>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Footer -->
     <footer class="footer">
