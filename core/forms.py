@@ -5,13 +5,16 @@ class DateInput(forms.DateInput):
     input_type = 'date'
 class TimeInput(forms.TimeInput):
     input_type = 'time'
+class CharInput(forms.TextInput):
+    input_type = 'text'
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = '__all__'
         widgets = {
             'date': DateInput(),
-            'shift':TimeInput()
+            'section': CharInput(),
+            'studentid' : CharInput()
         }
         exclude = ['present','updated']
 
@@ -22,8 +25,9 @@ class ProfileForm(forms.ModelForm):
         self.fields['date'].widget.attrs['class'] = 'form-control'
         self.fields['phone'].widget.attrs['class'] = 'form-control'
         self.fields['email'].widget.attrs['class'] = 'form-control'
-        self.fields['ranking'].widget.attrs['class'] = 'form-control'
-        self.fields['profession'].widget.attrs['class'] = 'form-control'
+        self.fields['term'].widget.attrs['class'] = 'form-control'
+        self.fields['program'].widget.attrs['class'] = 'form-control'
         self.fields['status'].widget.attrs['class'] = 'form-control'
         #self.fields['image'].widget.attrs['class'] = 'form-control'
-        self.fields['shift'].widget.attrs['class'] = 'form-control'
+        self.fields['section'].widget.attrs['class'] = 'form-control'
+        self.fields['studentid'].widget.attrs['class'] = 'form-control'

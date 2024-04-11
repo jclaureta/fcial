@@ -28,13 +28,14 @@ class Migration(migrations.Migration):
                 ('age', models.DateField()),
                 ('phone', models.BigIntegerField()),
                 ('email', models.EmailField(max_length=254)),
-                ('ranking', models.IntegerField()),
-                ('profession', models.CharField(max_length=200)),
-                ('status', models.CharField(choices=[('employee', 'employee'), ('visitor', 'visitor')], default='employee', max_length=20, null=True)),
+                ('term', models.IntegerField()),
+                ('program', models.CharField(max_length=200)),
+                ('status', models.CharField(choices=[('employee', 'employee'), ('professor', 'professor')], default='employee', max_length=20, null=True)),
                 ('present', models.BooleanField(default=False)),
                 ('image', models.ImageField(upload_to='')),
                 ('updated', models.DateTimeField(auto_now=True)),
-                ('shift', models.TimeField()),
+                ('section', models.CharField(max_length=200)),
+                ('studentid', models.CharField(max_length=200))
             ],
         ),
     ]

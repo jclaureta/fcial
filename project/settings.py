@@ -1,6 +1,8 @@
-
 from pathlib import Path
 import os
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,11 +12,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'ci!=nl9#v4x=ve#$($=!h=bd9t)kl&*1_e)v)^_ln3d2g#pqqj'
+# SECRET_KEY = 'A'
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-default-secret-key-for-local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['facialattendancesystem.azurewebsites.net', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -68,6 +73,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'defaultdb',  # Database name
+    #     'USER': 'admin',  # Database user
+    #     'PASSWORD': '08o7D0VKjH2LO3C478xf3JJZ',  # Database password
+    #     'HOST': 'mistakenly-stirred-werewolf.a1.pgedge.io',  # Database host
+    #     'PORT': '5432',  # Default port for PostgreSQL
+    #     'OPTIONS': {
+    #         'sslmode': 'require',
+    #     },
+    # }
 }
 
 

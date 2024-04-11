@@ -9,9 +9,12 @@
 .profile-img{
     text-align: center;
 }
-.profile-img img{
-    width: 70%;
-    height: 100%;
+.profile-img img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%; /* Optional: for circular images */
 }
 .profile-img .file {
     position: relative;

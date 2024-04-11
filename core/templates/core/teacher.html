@@ -1,0 +1,125 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container emp-profile">
+
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{% static 'img/fcicon.png'%}" alt="" width="50%">
+            <h6 class="text-muted p-1">Advance Attendance System</h6>
+
+        </div>
+        <div class="col-md-6">
+            <div class="profile-head">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <a target="_blank" class="scan" href="{% url 'details' %}"><input type="submit" class="profile-edit-btn m-2"
+                    name="btnAddMore" value="Run Scanner" /></a>
+        </div>
+    </div>
+    <hr>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="present-tab" data-toggle="tab" href="#present" role="tab"
+                aria-controls="home" aria-selected="true">Present</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="absent-tab" data-toggle="tab" href="#absent" role="tab" aria-controls="profile"
+                aria-selected="false">Absent</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+        <br>
+        <div class="tab-pane fade show active" id="present" role="tabpanel" aria-labelledby="home-tab">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ID NUMBER</th>
+                        <th scope="col">PROGRAM</th>
+                        <th scope="col">TERM</th>
+                        <th scope="col">GROUP</th>
+                        <th scope="col">ENTRY DATE - TIME</th>
+                        <th scope="col">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in present %}
+                    <tr>
+                        <td>{{profile.first_name}} {{profile.last_name}}</td>
+                        <td>{{profile.studentid}}</td>
+                        <td>{{profile.program}}</td>
+                        <td>{{profile.term}}</td>
+                        <td>{{profile.section}}</td>
+                        <td>{{ profile.updated|date:"m/d/Y" }} - {{ profile.updated|date:"h:i A" }}</td>
+                        <td>Present</td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+            <a href="{% url 'teacher' %}"><button type="button" class="btn btn-outline-primary">Refresh</button></a>
+
+        </div>
+
+        <div class="tab-pane fade" id="absent" role="tabpanel" aria-labelledby="profile-tab">
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ID NUMBER</th>
+                        <th scope="col">PROGRAM</th>
+                        <th scope="col">TERM</th>
+                        <th scope="col">GROUP</th>
+                        <th scope="col">ENTRY DATE - TIME</th>
+                        <th scope="col">STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in absent %}
+                    <tr>
+                        <td>{{profile.first_name}} {{profile.last_name}}</td>
+                        <td>{{profile.studentid}}</td>
+                        <td>{{profile.program}}</td>
+                        <td>{{profile.term}}</td>
+                        <td>{{profile.section}}</td>
+                        <td id="current-date"></td>
+                        <script>
+                            function formatDate(date) {
+                                var d = new Date(date),
+                                    month = '' + (d.getMonth() + 1),
+                                    day = '' + d.getDate(),
+                                    year = d.getFullYear();
+                    
+                                if (month.length < 2) 
+                                    month = '0' + month;
+                                if (day.length < 2) 
+                                    day = '0' + day;
+                    
+                                return [month, day, year].join('/') + " - 12:00 AM";
+                            }                    
+                            document.getElementById('current-date').innerText = formatDate(new Date());
+                        </script>    
+                        <td>Absent</td>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(".scan").click(function () {
+        var postData = { csrfmiddlewaretoken: '{{ csrf_token }}' }
+        $.ajax({
+            url: "{% url 'scan' %}",
+            data: {
+
+            },
+        });
+    });
+</script>
+
+{% endblock content %}
