@@ -13,6 +13,8 @@ import os
 import qrcode
 from django.core.files.base import ContentFile
 from io import BytesIO
+import base64
+from django.contrib.auth.models import User
 
 
 last_face = 'no_face'
@@ -433,3 +435,30 @@ def admin_login(request):
             return render(request, 'admin_login.html', {'error_message': 'Invalid username or password'})
     return render(request, 'admin_login.html')
 
+#######################################################
+#######################################################
+# def find_user_view(request):
+#     if is_ajax(request):
+#         photo = request.POST.get('photo')
+#         _, str_img = photo.split(';base64')
+
+#         # print(photo)
+#         decoded_file = base64.b64decode(str_img)
+#         print(decoded_file)
+
+#         x = Log()
+#         x.photo.save('upload.png', ContentFile(decoded_file))
+#         x.save()
+
+#         res = classify_face(x.photo.path)
+#         if res:
+#             user_exists = User.objects.filter(username=res).exists()
+#             if user_exists:
+#                 user = User.objects.get(username=res)
+#                 profile = Profile.objects.get(user=user)
+#                 x.profile = profile
+#                 x.save()
+
+#                 login(request, user)
+#                 return JsonResponse({'success': True})
+#         return JsonResponse({'success': False})

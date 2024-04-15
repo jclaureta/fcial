@@ -15,10 +15,12 @@
             </div>
         </div>
         <div class="col-md-3">
-            <a href="{% url 'add_profile' %}"><input type="submit" class="profile-edit-btn m-2 " name="btnAddMore"
-                    value="Add Profile" /></a>
-            <a   href="{% url 'index' %}"><input type="submit" class="profile-edit-btn m-2 "
-                        name="btnAddMore" value="Return" /></a>
+            <div class="card-body">
+                <center>
+                <a href="{% url 'add_profile' %}"><input type="submit" class="btn btn-info btn-lg btn-block" name="btnAddMore" value="Add Profile" /></a> 
+                <a href="{% url 'index' %}"><input type="submit" class="btn btn-secondary btn-lg btn-block" name="btnAddMore" value="Return" /></a>
+                </center>
+            </div>
         </div>
     </div>
 

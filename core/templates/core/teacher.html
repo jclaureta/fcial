@@ -10,13 +10,18 @@
             <h6 class="text-muted p-1">Advance Attendance System</h6>
 
         </div>
+        
         <div class="col-md-6">
             <div class="profile-head">
             </div>
         </div>
         <div class="col-md-3">
-            <a target="_blank" class="scan" href="{% url 'details' %}"><input type="submit" class="profile-edit-btn m-2"
-                    name="btnAddMore" value="Run Scanner" /></a>
+            <div class="card-body">
+                <center>
+                <a target="_blank" class="scan" href="{% url 'details' %}"><input type="submit" class="btn btn-primary btn-lg btn-block" name="btnAddMore" value="Run Scanner" /></a>
+                <a href="{% url 'index' %}"><input type="submit" class="btn btn-secondary btn-lg btn-block" name="btnAddMore" value="Return" /></a>
+                </center>
+            </div>
         </div>
     </div>
     <hr>
