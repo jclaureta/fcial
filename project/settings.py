@@ -1,5 +1,8 @@
 from pathlib import Path
 import os
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,12 +11,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'ci!=nl9#v4x=ve#$($=!h=bd9t)kl&*1_e)v)^_ln3d2g#pqqj'
+SECRET_KEY = 'ci!=nl9#v4x=ve#$($=!h=bd9t)kl&*1_e)v)^_ln3d2g#pqqj'
 # SECRET_KEY = 'A'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-default-secret-key-for-local')
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'your-default-secret-key-for-local')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['facialattendancesystem.azurewebsites.net', 'localhost', '127.0.0.1']
 
@@ -28,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'core'
 ]
 
 MIDDLEWARE = [
