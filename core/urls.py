@@ -2,7 +2,6 @@ from django.urls import path,include
 from .views import *
 from . import views
 
-
 urlpatterns = [
     path('', index, name= 'index'),
     path('ajax/', ajax, name= 'ajax'),
@@ -13,6 +12,8 @@ urlpatterns = [
     path('edit_profile/<int:id>/',edit_profile,name='edit_profile'),
     path('delete_profile/<int:id>/',delete_profile,name='delete_profile'),
     path('teacher/', teacher, name= 'teacher'),
+    path('student/', student, name= 'student'),
+
 
 
     path('clear_history/',clear_history,name='clear_history'),

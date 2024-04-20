@@ -39,6 +39,18 @@ def teacher(request):
     }
     return render(request, 'core/teacher.html', context)
 
+# STUDENT PAGE
+def student(request):
+    scanned = LastFace.objects.all().order_by('date').reverse()
+    present = Profile.objects.filter(present=True).order_by('updated').reverse()
+    absent = Profile.objects.filter(present=False).order_by('section')
+    context = {
+        'scanned': scanned,
+        'present': present,
+        'absent': absent,
+    }
+    return render(request, 'core/student.html', context)
+
 # SEARCH BAR (NOT IMPLEMENTED)
 def search(request):
     query = request.GET.get('q')
@@ -231,6 +243,7 @@ def reset(request):
         else:
             pass
     return redirect('profiles')
+
 
 ###################################################################
 #### NOT IMPLEMENTED ##############################################

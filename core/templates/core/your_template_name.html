@@ -1,0 +1,19 @@
+<h1>Unique Dates and Faces</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Last Faces</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for date, faces in dates_faces.items %}
+            {% for face in faces %}
+                <tr>
+                    <td>{{ date }}</td>
+                    <td>{{ face.last_face }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    </tbody>
+</table>

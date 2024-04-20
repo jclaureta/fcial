@@ -3,6 +3,11 @@
 {% block content %}
 
 <div class="container emp-profile pb-3">
+    <a href="{% url 'profiles' %}"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <span class="material-symbols-outlined">
+            keyboard_return
+        </span>
+    </a>
     <form method="POST" action="." class="needs-validation" enctype='multipart/form-data'>
         {% csrf_token %}
         <div class="row">
